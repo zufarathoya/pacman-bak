@@ -3,7 +3,7 @@ from Simulation1 import *
 from GAPopInit import *
 from Crossover import *
 from Mutation import *
-from Pop_30 import *
+from Pop_50 import *
 
 # hyperparameters
 max_generation = 50
@@ -118,7 +118,7 @@ def simulate(params):
 
     # populations = create_init_population_bin(params.game_length, params.pop_count)
 
-    populations = pop_30()
+    populations = pop_50()
     
     print(f'generation {0}')
     pop_fitnesses = calculate_population_fitness(populations) 
@@ -176,7 +176,7 @@ def simulate_writefile(params):
 
 # MAIN #
 
-pop_count_list = [30]
+pop_count_list = [50]
 mating_times_list = [10]
 mutation_probability_list = [0.05]
 tournament_size_list = [3]

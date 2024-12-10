@@ -3,9 +3,10 @@ from Simulation1 import *
 from GAPopInit import *
 from Crossover import *
 from Mutation import *
+from Pop_30 import *
 
 # hyperparameters
-max_generation = 250
+max_generation = 50
 basically_the_same_threshold = 1
 game_length = 60 * 60       # also as chromosome_length, gene_count
 input_delay = 10
@@ -115,8 +116,10 @@ class SimulationParams:
 
 def simulate(params):
 
-    populations = create_init_population_bin(params.game_length, params.pop_count)
-    
+    # populations = create_init_population_bin(params.game_length, params.pop_count)
+
+    populations = pop_30()
+
     print(f'generation {0}')
     pop_fitnesses = calculate_population_fitness(populations) 
     print('')
@@ -129,10 +132,10 @@ def simulate(params):
         generation_history.append(gen_result)
 
         # early stop if it's getting stagnant
-        if (i >= params.patience) and early_stop_check([res[1] for res in generation_history[-params.patience:]]):
-            print('early stopped')
-            break
-        print('')
+        # if (i >= params.patience) and early_stop_check([res[1] for res in generation_history[-params.patience:]]):
+        #     print('early stopped')
+        #     break
+        # print('')
 
     print('done')
 
@@ -163,10 +166,10 @@ def simulate_writefile(params):
         report.write('\n')
 
         # early stop if it's getting stagnant
-        if (i >= params.patience) and early_stop_check([res[1] for res in generation_history[-params.patience:]]):
-            print('early stopped')
-            break
-        print('')
+        # if (i >= params.patience) and early_stop_check([res[1] for res in generation_history[-params.patience:]]):
+        #     print('early stopped')
+        #     break
+        # print('')
 
     print('done')
     report.close()
@@ -174,8 +177,8 @@ def simulate_writefile(params):
 # MAIN #
 
 pop_count_list = [30]
-mating_times_list = [10, 20, 50]
-mutation_probability_list = [0.05, 0.15, 0.75]
+mating_times_list = [10]
+mutation_probability_list = [0.05]
 tournament_size_list = [5]
 
 for pc in pop_count_list:
